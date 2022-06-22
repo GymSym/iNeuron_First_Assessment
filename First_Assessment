@@ -1,0 +1,115 @@
+
+Question 1. Create a function in python to read the text file and replace specific content of the file.
+Answer 1:
+def my_function():
+    with open('Screening.txt', 'w') as f:  # create the text file
+        f.write("This is a placement assignment")  # write the origin content
+
+    with open('Screening.txt', 'r') as f:  # reading the file
+        data = f.read()    # read all the contents
+
+        data = data.replace("placement", "Screening")  # replacing the string word whom to whom
+
+    with open('Screening.txt', 'w') as f:   # again write in the file
+        f.write(data)        # overwrite the updated value
+
+
+my_function()
+
+
+
+Question 2: Demonstrate use of abstract class, multiple inheritance and decorator in python using examples.
+
+Decorator: Using decorators we can extra features in the existing functions.
+Example: 
+def div(a, b):
+    print(a / b)
+
+
+def decor_div(func):
+    def inner(a, b):
+        if a < b:
+            a, b = b, a
+        return func(a, b)
+
+    return inner
+
+
+div = decor_div(div)
+
+div(4, 2)
+
+Abstract Class: Abstract class has at least one abstract method and abstract method does not have any definition they have only declaration.
+By default python does not support abstract class but using ABC module which stands for Abstract base Classes.
+We use this class to design the Software as this makes the other method to include some specific functions or we can say that some restrictions which other functions needs to follow.
+Example:
+from abc import ABC, abstractmethod
+
+
+class Computer(ABC):
+    @abstractmethod
+    def process(self):
+        pass
+
+
+class Laptop(Computer):
+    def process(self):
+        print("This is Laptop class.")
+
+
+class Whiteboard:                #  Whiteboard is not a abstract class but still it needs to use process class. we need to make it abstract
+    def work(self):
+        print("This is Whiteboard class")
+
+
+class Programmer:
+    def work(self, com):
+        print("This is Programmer class")
+        com.process()
+
+
+com1 = Laptop()
+# com1.process()
+
+com2 = Whiteboard()
+
+prog1 = Programmer()
+prog1.work(com2)
+
+Multiple Inheritance:
+It is a type of inheritance where we have two or more base classes adding its features in the child class.
+Example:
+class A:
+    def method(self):
+        print("A class method is called")
+
+
+class B(A):
+    def method(self):
+        print("B class method is called")
+
+
+class C(A):
+    def method(self):
+        print("C class method is called")
+
+
+class D(B, C):
+    def method(self):
+        print("D class method is called")
+
+
+d = D()
+d.method()
+
+c = C()
+c.method()
+b = B()
+b.method()
+B.method(d)
+A.method(d)
+C.method(d)
+
+
+
+
